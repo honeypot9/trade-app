@@ -1,0 +1,29 @@
+server:
+  port: 8890
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "shutdown"
+  endpoint:
+    shutdown:
+      enabled: false
+endpoints:
+  shutdown:
+    enabled: false
+
+#  rabbitmq:
+#    host: {$RABBITMQ_HOST}
+#    port: {$RABBITMQ_PORT}
+#    username: {$RABBITMQ_USERNAME}
+#    password: {$RABBITMQ_PASSWORD}
+#  cloud:
+#    config:
+#      uri: ${CONFIG_URL}
+#      fail-fast: true
+#    stream:
+#      bindings:
+#        output:
+#          destination: "legalbriefs"
+#      default:
+#        contentType: "application/json"

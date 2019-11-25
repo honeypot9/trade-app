@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: datacollector
+  cloud:
+    config:
+      uri: {$CONFIG_URL}
+      fail-fast: true
+    refresh:
+      enabled: false
+    profiles:
+        active: profile1,profile2,profile3
