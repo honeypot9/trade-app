@@ -12,7 +12,7 @@
     <modules>
         <module>datacollector</module>
         <module>config</module>
-        <module>serviceregistry</module>
+        <module>registry</module>
     </modules>
 
     <properties>
