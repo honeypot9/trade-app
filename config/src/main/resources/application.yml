@@ -6,7 +6,7 @@ spring:
       server:
         native:
 #          search-locations: {$CONFIG_PATH}
-          search-locations: C:/Projects/trade-app/config/src/main/resources/shared
+          search-locations: C:/StudyProjects/trade-app/config/src/main/resources/shared
   profiles:
     active: native
   name: config-server
