@@ -13,6 +13,8 @@
         <module>datacollector</module>
         <module>config</module>
         <module>registry</module>
+        <module>analytics</module>
+        <module>init</module>
     </modules>
 
     <properties>
