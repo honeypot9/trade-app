@@ -7,11 +7,11 @@
     <artifactId>datacollector</artifactId>
 
     <parent>
-        <artifactId>trade-app</artifactId>
-        <groupId>trade</groupId>
-        <version>0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+    <artifactId>trade-app</artifactId>
+    <groupId>trade</groupId>
+    <version>0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+</parent>
 
     <dependencies>
         <dependency>
@@ -43,6 +43,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
             </dependency>
+        <dependency>
+            <groupId>trade</groupId>
+            <artifactId>datacollector_api</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
