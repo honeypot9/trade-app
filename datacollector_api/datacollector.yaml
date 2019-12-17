@@ -1,0 +1,61 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: Api Documentation
+  description: Api Documentation
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+basePath: /datacollector
+consumes:
+  - application/json;charset=utf-8
+produces:
+  - application/json;charset=utf-8
+paths:
+  /init:
+    post:
+      tags:
+        - datacollector
+      summary: push init messages for further chain calculation
+      operationId: fire
+      parameters:
+        - name: extSystem
+          in: query
+          description: extsystem name
+          required: true
+          type: string
+          allowEmptyValue: false
+        - name: chain
+          in: query
+          description: chain data to calculate profit
+          required: true
+          type: array
+          items:
+            type: string
+          allowEmptyValue: false
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        default:
+          description: Internal server error
+      deprecated: false
+definitions:
+  InitMessage:
+    description: >-
+      Message payload contains information about platform (site) where we want grab data and crypto currency list
+      that we want to calculate.
+    type: object
+    properties:
+      extSystem:
+        description: >-
+          platform (site) name
+        type: string
+        example: null
+      chain:
+        description: >-
+          crypto chain data list
+        type: array
+        items: string
+        example: null
