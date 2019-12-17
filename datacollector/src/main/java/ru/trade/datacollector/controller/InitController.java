@@ -1,17 +1,14 @@
 package ru.trade.datacollector.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import ru.trade.datacollector_api.controller.InitApi;
 
-@EnableBinding(Source.class)
+
 @RestController
-public class InitController {
-    //refer to instance of bean that Stream adds to container
-    @Autowired
-    Source currentSource;
-
-
-
+public class InitController implements InitApi {
+    ResponseEntity<Void> fire(){
+        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    }
 }
