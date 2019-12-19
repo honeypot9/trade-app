@@ -47,6 +47,9 @@ definitions:
       Message payload contains information about platform (site) where we want grab data and crypto currency list
       that we want to calculate.
     type: object
+    required:
+      - extSystem
+      - chain
     properties:
       extSystem:
         description: >-
@@ -59,3 +62,130 @@ definitions:
         type: array
         items: string
         example: null
+  InitChainMessage:
+    description: >-
+      Init chain message
+    type: object
+    required:
+      - extSystemId
+      - chain
+      - chainElCount
+    properties:
+      messageId:
+        description: >-
+          Message id
+        type: integer
+        example: null
+      extSystemId:
+        description: >-
+          ext system id
+        type: integer
+        example: null
+      chain:
+        description: >-
+          crypto chain data list
+        type: array
+        items: string
+        example: null
+      chainElCount:
+        description: >-
+          Control check chain count
+        type: integer
+        example: null
+  TradeCoupleMessage:
+    description: >-
+      Trade couple message
+    type: object
+    required:
+      - messageId
+      - groupId
+      - priorityId
+      - extSystemId
+      - chain
+    properties:
+      messageId:
+        description: >-
+          Message id
+        type: integer
+        example: null
+      groupId:
+        description: >-
+          Group message id
+        type: string
+        example: null
+      priorityId:
+        description: >-
+          Priority message id
+        type: string
+        example: null
+      extSystemId:
+        description: >-
+          ext system id
+        type: string
+        example: null
+      chain:
+        description: >-
+          crypto chain data list
+        type: array
+        items: string
+        example: null
+  ChainCalcMessage:
+    description: >-
+      Message contains:
+      - unique id
+      - trade couple data for each segment
+    type: object
+    required:
+      - chain
+    properties:
+      chainId:
+        description: >-
+          Unique chain id (trade couple data + extsystem)
+        type: integer
+        example: null
+      chain:
+        description: >-
+          crypto chain data list
+        type: array
+        items:
+          $ref: '#/definitions/TradeCouple'
+        example: null
+  TradeCouple:
+    description: >-
+      object contains:
+        - ext system id
+        - trade couple ids
+        - buy rate
+        - sell rate
+        - buy currency count
+        - sell currency count
+    type: object
+    properties:
+      extSystemId:
+          description: >-
+            ext system id
+          type: integer
+      firstCurrencyID:
+        description: >-
+          first currecny internal id in couple
+        type: integer
+      secondCurrencyID:
+        description: >-
+          second currecny internal id in couple
+        type: integer
+      buyRate:
+        description: >-
+          buy rate
+        type: number
+      sellRate:
+        description: >-
+          sell rate
+        type: number
+      buyCount:
+        description: >-
+          currency buy count
+        type: number
+      sellCount:
+        description: >-
+          currency sell count
+        type: number
