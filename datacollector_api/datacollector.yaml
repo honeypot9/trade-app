@@ -16,23 +16,17 @@ paths:
     post:
       tags:
         - datacollector
-      summary: push init messages for further chain calculation
+      summary: datacollector api
       operationId: fire
+      consumes:
+        - application/json
       parameters:
-        - name: extSystem
-          in: query
-          description: extsystem name
+        - in: body
+          name: initMsg
+          description: init msg type
           required: true
-          type: string
-          allowEmptyValue: false
-        - name: chain
-          in: query
-          description: chain data to calculate profit
-          required: true
-          type: array
-          items:
-            type: string
-          allowEmptyValue: false
+          schema:
+            $ref: '#/definitions/InitMessage'
       responses:
         '200':
           description: OK
@@ -96,12 +90,6 @@ definitions:
     description: >-
       Trade couple message
     type: object
-    required:
-      - messageId
-      - groupId
-      - priorityId
-      - extSystemId
-      - chain
     properties:
       messageId:
         description: >-
@@ -128,27 +116,6 @@ definitions:
           crypto chain data list
         type: array
         items: string
-        example: null
-  ChainCalcMessage:
-    description: >-
-      Message contains:
-      - unique id
-      - trade couple data for each segment
-    type: object
-    required:
-      - chain
-    properties:
-      chainId:
-        description: >-
-          Unique chain id (trade couple data + extsystem)
-        type: integer
-        example: null
-      chain:
-        description: >-
-          crypto chain data list
-        type: array
-        items:
-          $ref: '#/definitions/TradeCouple'
         example: null
   TradeCouple:
     description: >-
