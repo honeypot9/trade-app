@@ -7,6 +7,6 @@ public interface CryptoRepository extends JpaRepository<Crypto, Integer>{
 
     public Crypto findByAlias(String alias);
 
-    public Crypto findByDescription(String alias);
+    public Crypto findByDescription(String description);
 
 }
