@@ -9,10 +9,10 @@ import ru.trade.datacollector.util.QueuesNames;
 public interface Queues {
 
     // Commands
-    @Input(QueuesNames.INIT)
+    @Input(QueuesNames.INIT_COMMAND)
     public SubscribableChannel initChainProfitCalcCommand();
 
-    @Output(QueuesNames.EXTSYSTEMCOUPLEREQ)
+    @Output(QueuesNames.EXTSYSTEMCHAINREQ_COMMAND)
     public MessageChannel getChainDataFromExtSystemCommand();
 
 }

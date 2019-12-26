@@ -2,15 +2,35 @@ package ru.trade.datacollector.util;
 
 public class QueuesNames {
 
-    //init calculate chain queue
-    public static final String INIT = "init";
+    /**
+     * Commands
+     */
 
-    //ext system chain request queue
-    public static final String  EXTSYSTEMCHAINREQ= "extsystemreq";
+    //init calculate chain command
+    public static final String INIT_COMMAND = "initChainCommand";
 
-    //ext system trade couple data request queue
-    public static final String  EXTSYSTEMCOUPLEREQ= "extsystemcouplereq";
+    //ext system chain request command
+    public static final String  EXTSYSTEMCHAINREQ_COMMAND= "extSystemReqCommand";
 
-    //chain profit calculation queue
-    public static final String  CHAINCALC= "chaincalc";
+    //ext system trade couple data request command
+    public static final String  EXTSYSTEMCOUPLEREQ_COMMAND= "extSystemCoupleReqCommand";
+
+    //chain profit calculation command
+    public static final String  CHAINCALC_COMMAND= "chainCalcCommand";
+
+    /**
+     * Events
+     */
+
+    //init event
+    public static final String INIT_EVENT = "initChainEvent";
+
+    //ext system chain request event
+    public static final String EXTSYSTEMCHAINREQ_EVENT = "extSystemChainReqEvent";
+
+    //ext system trade couple data request event
+    public static final String EXTSYSTEMCOUPLEREQ_EVENT = "extSystemCoupleReqEvent";
+
+    //chain profit calculation event
+    public static final String CHAINCALC_EVENT = "chainCalcEvent";
 }
