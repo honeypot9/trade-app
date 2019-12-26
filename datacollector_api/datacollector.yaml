@@ -79,7 +79,7 @@ definitions:
         description: >-
           crypto chain data list
         type: array
-        items: string
+        items: number
         example: null
       chainElCount:
         description: >-
@@ -96,9 +96,9 @@ definitions:
           Message id
         type: integer
         example: null
-      groupId:
+      chainId:
         description: >-
-          Group message id
+          Chain message id
         type: string
         example: null
       priorityId:
@@ -156,3 +156,17 @@ definitions:
         description: >-
           currency sell count
         type: number
+  TradeCoupleReq:
+    description: >-
+      object contains:
+        - trade couple ids
+    type: object
+    properties:
+      firstCurrencyID:
+        description: >-
+          first currecny internal id in couple
+        type: integer
+      secondCurrencyID:
+        description: >-
+          second currecny internal id in couple
+        type: integer
