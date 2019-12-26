@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.trade.datacollector.repository.CryptoRepository;
 import ru.trade.datacollector.repository.ExtSystemRepository;
+import ru.trade.datacollector.service.DataCollectorProcessingService;
 import ru.trade.datacollector.util.QueuesNames;
 import ru.trade.datacollector_api.controller.InitApi;
 import ru.trade.datacollector_api.dto.InitChainMessageDto;
@@ -26,10 +27,12 @@ public class InitController implements InitApi {
 
     CryptoRepository cryptoRepository;
     ExtSystemRepository extSystemRepository;
+    DataCollectorProcessingService dataCollectorProcessingService;
 
     @Override
     @PostMapping("/init")
     public ResponseEntity<Void> fire(@ApiParam(value = "init msg", required = true) @RequestBody InitMessageDto initMsg) {
+        //TODO:add try-catch and exception handlers
         logger.debug("Start InitController.fire()");
         logger.debug("Payload:");
         logger.debug(initMsg.toString());
@@ -45,9 +48,8 @@ public class InitController implements InitApi {
         }
         initChainMsg.setExtSystemId(extSystemRepository.findByAlias(initMsg.getExtSystem()).id);
         initChainMsg.setChain(chain);
-        //logger.debug("Put InitChainMessageDto message into " + QueuesNames.INIT + " queue");
-
-
+        logger.debug("Put message InitChainMessage into queue");
+        dataCollectorProcessingService.initChainProcessing(initChainMsg);
         logger.debug("End InitController.fire()");
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
