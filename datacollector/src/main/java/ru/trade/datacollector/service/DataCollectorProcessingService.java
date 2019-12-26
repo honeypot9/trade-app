@@ -1,13 +1,14 @@
 package ru.trade.datacollector.service;
 
-import ru.rit.pkt.product_inventory_api.dto.InitMessageDto;
+import ru.trade.datacollector_api.dto.InitChainMessageDto;
+import ru.trade.datacollector_api.dto.InitMessageDto;
 
 public interface DataCollectorProcessingService {
 
-    public InitMessageDto initProcessing(InitMessageDto message);
+    public void initChainProcessing(InitChainMessageDto message);
 
-    public  ChainMessageDto tradeChainProcessing(ChainMessageDto message);
-
-    public TradeCoupleMessageDto tradeCoupleProcessing(TradeCoupleMessageDto message);
+//    public  void tradeChainProcessing(ChainMessageDto message);
+//
+//    public void tradeCoupleProcessing(TradeCoupleMessageDto message);
 
 }
