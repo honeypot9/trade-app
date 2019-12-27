@@ -12,6 +12,9 @@ public interface Queues {
     @Input(QueuesNames.INIT_COMMAND)
     public SubscribableChannel initChainProfitCalcCommand();
 
+    @Input(QueuesNames.EXTSYSTEMCHAINREQ_COMMAND)
+    public SubscribableChannel putChainDataFromExtSystemCommand();
+
     @Output(QueuesNames.EXTSYSTEMCHAINREQ_COMMAND)
     public MessageChannel getChainDataFromExtSystemCommand();
 
