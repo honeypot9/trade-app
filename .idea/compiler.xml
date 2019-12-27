@@ -7,6 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="datacollector" />
+        <module name="analytics" />
+        <module name="datacollector_api" />
+        <module name="registry" />
         <module name="serviceregistry" />
         <module name="config" />
       </profile>

@@ -12,37 +12,46 @@ public class TradeCouple {
     @Column(name = "ID", nullable = false)
     public int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CHAIN_ID")
-    public Chain chain;
+    @Column(name = "CHAINID", nullable = true)
+    public Integer chainId;
 
-    @Column(name = "CRYPTOFIRST_ID", nullable = true)
-    public Integer tradeCoupleFirstId;
+    @Column(name = "PRIORITY", nullable = true)
+    public Integer priority;
 
-    @Column(name = "CRYPTSECOND_ID", nullable = true)
-    public Integer tradeCoupleSecondId;
+    @Column(name = "FIRSTCURRENCYID", nullable = true)
+    private Integer firstCurrencyID;
+
+    @Column(name = "FIRSTCURRENCYEXTSYSTEMID", nullable = true)
+    private Integer firstCurrencyExtSystemId;
+
+    @Column(name = "SECONDCURRENCYID", nullable = true)
+    private Integer secondCurrencyID;
+
+    @Column(name = "SECONDCURRENCYEXTSYSTEMID", nullable = true)
+    private Integer secondCurrencyExtSystemId;
 
     @Column(name = "BUYRATE", nullable = true)
-    public BigDecimal buyRate;
+    private BigDecimal buyRate;
 
     @Column(name = "BUYRATEPREVIOUS", nullable = true)
-    public BigDecimal buyRatePrevious;
-
-    @Column(name = "BUYVOLUME", nullable = true)
-    public BigDecimal buyVolume;
-
-    @Column(name = "BUYVOLUMEPREVIOUS", nullable = true)
-    public BigDecimal buyVolumePrevious;
+    private BigDecimal buyRatePrevious;
 
     @Column(name = "SELLRATE", nullable = true)
-    public BigDecimal sellRate;
+    private BigDecimal sellRate;
 
     @Column(name = "SELLRATEPREVIOUS", nullable = true)
-    public BigDecimal sellRatePrevious;
+    private BigDecimal sellRatePrevious;
+
+    @Column(name = "BUYVOLUME", nullable = true)
+    private BigDecimal buyVolume;
+
+    @Column(name = "BUYVOLUMEPREVIOUS", nullable = true)
+    private BigDecimal buyVolumePrevious;
 
     @Column(name = "SELLVOLUME", nullable = true)
-    public BigDecimal sellVolume;
+    private BigDecimal sellVolume;
 
     @Column(name = "SELLVOLUMEPREVIOUS", nullable = true)
-    public BigDecimal sellVolumePrevious;
+    private BigDecimal sellVolumePrevious;
+
 }
