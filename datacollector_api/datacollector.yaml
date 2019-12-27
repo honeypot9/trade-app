@@ -56,7 +56,7 @@ definitions:
         type: array
         items: string
         example: null
-  InitChainMessage:
+  ChainReqMessage:
     description: >-
       Init chain message
     type: object
@@ -86,7 +86,7 @@ definitions:
           Control check chain count
         type: integer
         example: null
-  TradeCoupleMessage:
+  TradeCoupleReqMessage:
     description: >-
       Trade couple message
     type: object
@@ -109,15 +109,30 @@ definitions:
       extSystemId:
         description: >-
           ext system id
-        type: string
+        type: integer
         example: null
-      chain:
+      data:
         description: >-
           crypto chain data list
         type: array
-        items: string
+        items:
+          $ref: '#/definitions/TradeCoupleReqDataEl'
         example: null
-  TradeCouple:
+  TradeCoupleReqDataEl:
+    description: >-
+      object contains:
+        - trade couple ids
+    type: object
+    properties:
+      firstCurrencyID:
+        description: >-
+          first currecny internal id in couple
+        type: integer
+      secondCurrencyID:
+        description: >-
+          second currecny internal id in couple
+        type: integer
+  TradeCoupleMessage:
     description: >-
       object contains:
         - ext system id
@@ -156,17 +171,3 @@ definitions:
         description: >-
           currency sell count
         type: number
-  TradeCoupleReq:
-    description: >-
-      object contains:
-        - trade couple ids
-    type: object
-    properties:
-      firstCurrencyID:
-        description: >-
-          first currecny internal id in couple
-        type: integer
-      secondCurrencyID:
-        description: >-
-          second currecny internal id in couple
-        type: integer
