@@ -13,8 +13,9 @@ import ru.trade.datacollector.repository.ExtSystemRepository;
 import ru.trade.datacollector.service.DataCollectorProcessingService;
 import ru.trade.datacollector.util.QueuesNames;
 import ru.trade.datacollector_api.controller.InitApi;
-import ru.trade.datacollector_api.dto.InitChainMessageDto;
 import ru.trade.datacollector_api.dto.InitMessageDto;
+import ru.trade.datacollector_api.dto.TradeCoupleReqDataElDto;
+import ru.trade.datacollector_api.dto.TradeCoupleReqMessageDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,16 +39,19 @@ public class InitController implements InitApi {
         logger.debug(initMsg.toString());
         logger.debug("Get data for init chain message");
         logger.debug("extSystemId: " + extSystemRepository.findByAlias(initMsg.getExtSystem()).id);
-        InitChainMessageDto initChainMsg = new InitChainMessageDto();
+        TradeCoupleReqMessageDto initChainMsg = new TradeCoupleReqMessageDto();
         logger.debug("Cryptolist:");
-        List<Object> chain = new ArrayList<Object>();
-        for (int i = 0; i < initMsg.getChain().size(); i++){
-            chain.add( cryptoRepository.findByAlias( (String) initMsg.getChain().get(i) ).id );
-            logger.debug("name: " + initMsg.getChain().get(i));
-            logger.debug("id: " + cryptoRepository.findByAlias( (String) initMsg.getChain().get(i) ).id);
+        List<TradeCoupleReqDataElDto> chain = new ArrayList<TradeCoupleReqDataElDto>();
+        for (int i = 1; i < initMsg.getChain().size()-1; i++){
+            TradeCoupleReqDataElDto el = new TradeCoupleReqDataElDto();
+            el.setFirstCurrencyID(cryptoRepository.findByAlias( (String) initMsg.getChain().get(i-1) ).id);
+            el.setSecondCurrencyID(cryptoRepository.findByAlias( (String) initMsg.getChain().get(i) ).id);
+            logger.debug("name: " + initMsg.getChain().get(i-1) + "->" + initMsg.getChain().get(i));
+            //logger.debug("id: " + cryptoRepository.findByAlias( (String) initMsg.getChain().get(i) ).id);
+            chain.add(el);
         }
         initChainMsg.setExtSystemId(extSystemRepository.findByAlias(initMsg.getExtSystem()).id);
-        initChainMsg.setChain(chain);
+        initChainMsg.setData(chain);
         logger.debug("Put message InitChainMessage into queue");
         dataCollectorProcessingService.initChainProcessing(initChainMsg);
         logger.debug("End InitController.fire()");
