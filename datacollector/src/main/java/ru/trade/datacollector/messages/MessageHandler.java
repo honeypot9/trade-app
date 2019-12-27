@@ -9,7 +9,7 @@ import ru.trade.datacollector.repository.ChainRepository;
 import ru.trade.datacollector.repository.CryptoRepository;
 import ru.trade.datacollector.service.DataCollectorProcessingService;
 import ru.trade.datacollector.util.QueuesNames;
-import ru.trade.datacollector_api.dto.InitChainMessageDto;
+import ru.trade.datacollector_api.dto.ChainReqMessageDto;
 import ru.trade.datacollector_api.dto.TradeCoupleMessageDto;
 
 import java.math.BigInteger;
@@ -24,31 +24,34 @@ public class MessageHandler {
     Logger logger = LoggerFactory.getLogger(MessageHandler.class);
 
     @StreamListener(target = QueuesNames.INIT_EVENT)
-    public void initChainProcessing(InitChainMessageDto message){
+    public void initChainProcessing(ChainReqMessageDto message){
         //TODO:add get chain id or create new chain in db
         logger.debug("Start initChainProcessing");
         logger.debug("Incoming message: " + message.toString());
         logger.debug("Create message for extSystemChainReq");
-        //find chain by alias
-        TradeCoupleMessageDto tmsg = new TradeCoupleMessageDto();
-        Chain currentChain = chainRepository.findChainByAlias(new BigInteger(getChainAlias(message)));
-        if(currentChain == null) {
-            currentChain = new Chain();
-            currentChain.alais = getChainAlias(message);
-            currentChain.description = getChainDescription(message);
-        }
+
+        Chain currentChain = new Chain();
+        if(!chainRepository.existsByAlias(getChainAlias(message))){
+            Chain newChain = new Chain();
+            newChain.alais = getChainAlias(message);
+            newChain.description = getChainDescription(message);
+            newChain.extSystemId = message.getExtSystemId();
+            currentChain = chainRepository.save(newChain);
+        }else
+            currentChain = chainRepository.findChainByAlias(getChainAlias(message));
+
 
     }
 
-    public String getChainAlias(InitChainMessageDto message){
+    public BigInteger getChainAlias(ChainReqMessageDto message){
         String sAlias = message.getExtSystemId().toString();
         for(int i = 0; i < message.getChainElCount(); i++){
             sAlias += message.getChain().get(i);
         }
-        return sAlias;
+        return new BigInteger(sAlias);
     }
 
-    public String getChainDescription(InitChainMessageDto message) {
+    public String getChainDescription(ChainReqMessageDto message) {
         String desc = "";
         for(int i=0; i < message.getChainElCount(); i++){
             desc += cryptoRepository.findById((Integer)message.getChain().get(i));
