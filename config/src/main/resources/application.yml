@@ -8,7 +8,7 @@ spring:
 #          search-locations: {$CONFIG_PATH}
           search-locations: C:/StudyProjects/trade-app/config/src/main/resources/shared
   profiles:
-    active: native
+    active: profile1
   name: config-server
 server:
   port: 8890
