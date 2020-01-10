@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
-import ru.trade.init.messages.Queues;
+import  ru.trade.datacollector.messages.Queues;
 
 @EnableBinding(Queues.class)
 @SpringBootApplication
