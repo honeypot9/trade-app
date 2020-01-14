@@ -132,6 +132,20 @@ definitions:
         description: >-
           second currecny internal id in couple
         type: integer
+  TradeCoupleRespDataEl:
+    description: >-
+      object contains:
+        - trade couple ids
+    type: object
+    properties:
+      firstCurrencyID:
+        description: >-
+          first currecny internal id in couple
+        type: integer
+      secondCurrencyID:
+        description: >-
+          second currecny internal id in couple
+        type: integer
   TradeCoupleMessage:
     description: >-
       object contains:
@@ -171,3 +185,11 @@ definitions:
         description: >-
           currency sell count
         type: number
+  ExtSystemTradeCoupleRespMessage:
+    description: >-
+    type: object
+    properties:
+      extSystemId:
+        description: >-
+          ext system id
+        type: integer
