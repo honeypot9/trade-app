@@ -23,7 +23,20 @@ public class Chain {
     @Column(name = "DESCRIPTION", nullable = true)
     public String description;
 
-    @OneToMany(mappedBy = "CHAIN", orphanRemoval = true)
-    public Set<TradeCouple> tradeCoupleList = new HashSet<TradeCouple>();
+    @OneToMany
+    public Set<TradeCouple> tradeCoupleRef = new HashSet<TradeCouple>();
+
+    public Set<TradeCouple> getTradeCoupleRefs() {
+        return tradeCoupleRef;
+    }
+
+    public void setTradeCoupleRefs(Set<TradeCouple> tradeCoupleRefs) {
+        if (tradeCoupleRefs != null) {
+            this.tradeCoupleRef.clear();
+            this.tradeCoupleRef.addAll(tradeCoupleRefs);
+        } else {
+            this.tradeCoupleRef.clear();
+        }
+    }
 
 }
