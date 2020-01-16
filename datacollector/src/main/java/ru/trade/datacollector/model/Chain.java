@@ -10,12 +10,12 @@ import java.util.Set;
 public class Chain {
     @Id
     @SequenceGenerator(name = "CHAIN_SEQ", sequenceName = "CHAIN_SEQ", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CHAIN_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", nullable = false)
     public Integer id;
 
     @Column(name = "ALIAS", nullable = true)
-    public BigInteger alais;
+    public BigInteger alias;
 
     @Column(name = "EXTSYSTEM_ID", nullable = true)
     public Integer extSystemId;
