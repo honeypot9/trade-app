@@ -6,7 +6,7 @@ import ru.trade.datacollector.model.Chain;
 import java.math.BigInteger;
 
 public interface ChainRepository extends JpaRepository<Chain, Integer> {
-    Chain findChainByAlias(BigInteger alais);
+    Chain findChainByAlias(BigInteger alias);
 
-    boolean existsByAlias(BigInteger bigInteger);
+    boolean existsByalias(BigInteger alias);
 }
