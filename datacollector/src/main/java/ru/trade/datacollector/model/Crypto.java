@@ -12,7 +12,7 @@ public class Crypto {
     public int id;
 
     @Column(name = "ALIAS", nullable = true)
-    public String alais;
+    public String alias;
 
     @Column(name = "DESCRIPTION", nullable = true)
     public String description;
